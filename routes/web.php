@@ -13,10 +13,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// Not remove
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// aggiungendo ->middleware('auth') rendo la route accessibile solo a chi è loggato
+Route::get('/', 'HomeController@index')->name('home');
+
+// Gestione gruppi di route pubbliche
+Route::get('/blog', 'PostController@index')->name('blog');
+Route::get('/blog/{slug}', 'PostController@show')->name('blog-page');
+
+// Gestione  gruppi di route protette
+Route::prefix('admin') 
+        ->namespace('Admin') 
+        // Dare un nome ai gruppi (il punto è per separare)
+        ->name('admin.')
+        ->middleware('auth') 
+        ->group(function () {   
+            // qua inserirò tutte le route che voglio
+            Route::get('/', 'HomeController@index')->name('home'); 
+
+            Route::resource('posts', 'PostController');
+      });
+
+
+
+

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// includo la classe per prendere i dati di login
+use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -11,10 +14,12 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // Funzione che verifica se si è loggati(rende privata la sezione)
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+    // va eliminato e spostato su web.php
 
     /**
      * Show the application dashboard.
@@ -23,6 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        return view('guest.home');
     }
 }

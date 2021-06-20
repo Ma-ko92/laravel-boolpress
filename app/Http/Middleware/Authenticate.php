@@ -12,6 +12,7 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
+    // funzione che reinderizza l'utente non loggato al login
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
