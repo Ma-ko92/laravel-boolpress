@@ -1,24 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <h1>Home privata</h1>
-                <div class="card-header">{{ __('Dashboard') }}</div>
+    <div class="container">
+        
+        <h1>Ultimi post</h1>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+        <div class="row">
+            @foreach ($posts as $post)
+                <div class="col-6">
+                    <div class="card" style="margin-bottom: 20px;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $post->title }}</h5>
+                            
+                            <a href="{{ route('blog-page', ['slug' => $post->slug]) }}" class="btn btn-primary">View Post</a>
                         </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
-    </div>
-</div>
+    </div>    
+
 @endsection

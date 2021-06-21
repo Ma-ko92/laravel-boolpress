@@ -4,12 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Post;
 
 class HomeController extends Controller
 {
     //pagina index utenti loggati
     public function index() {
 
-        return view('admin.home');
+        $posts = Post::all();
+
+        $data = [
+            'posts' => $posts
+        ];
+
+
+        return view('admin.home', $data);
     }
 }

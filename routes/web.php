@@ -33,7 +33,7 @@ Route::prefix('admin')
             // qua inserirò tutte le route che faranno parte degli utenti loggati
             Route::get('/', 'HomeController@index')->name('home'); 
 
-            Route::resource('posts', 'PostController');
+            Route::resource('posts', 'PostController');//->name('post');
       });
 
 
