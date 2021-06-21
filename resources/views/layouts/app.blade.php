@@ -42,6 +42,7 @@
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Authentication Links -->
+                        {{-- Se l'utente non è loggato vedrà il seguente codice --}}
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('blog') }}">{{ __('Login') }}</a>
@@ -51,6 +52,7 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
+                        {{-- Se l'utente è loggato vedrà il seguente codice --}}
                         @else
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.posts.index') }}">Gestisci post</a>

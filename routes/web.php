@@ -13,24 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Not remove
+// Not remove (Metodo della classe Auth che importa le rotte che necessitano di autenticazione)
 Auth::routes();
 
-// aggiungendo ->middleware('auth') rendo la route accessibile solo a chi è loggato
+// Home controller di esempio, aggiunto dalla funzione di sopra,
 Route::get('/', 'HomeController@index')->name('home');
 
 // Gestione gruppi di route pubbliche
 Route::get('/blog', 'PostController@index')->name('blog');
 Route::get('/blog/{slug}', 'PostController@show')->name('blog-page');
 
-// Gestione  gruppi di route protette
+// Gestione  gruppi di route protette, tramite prefisso
 Route::prefix('admin') 
         ->namespace('Admin') 
-        // Dare un nome ai gruppi (il punto è per separare)
+        // Dare un nome ai gruppi (il punto serve a separare)
         ->name('admin.')
         ->middleware('auth') 
         ->group(function () {   
-            // qua inserirò tutte le route che voglio
+            // qua inserirò tutte le route che faranno parte degli utenti loggati
             Route::get('/', 'HomeController@index')->name('home'); 
 
             Route::resource('posts', 'PostController');

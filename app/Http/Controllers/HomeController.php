@@ -14,10 +14,16 @@ class HomeController extends Controller
      *
      * @return void
      */
-    // Funzione che verifica se si è loggati(rende privata la sezione)
+
+    // Questo homecontroller ha la particolarità di avere questa funzione di autenticazione, che fa accedere l'utente a questo controller
+    // e a tutti i suoi metodi solo se esso è autenticato.
+    // 
+    // Buona pratica è eliminare il middleware da qui e metterlo dentro  il file web.php per una maggiore praticità, e senza dover ripetere
+    // la riga di funzione. Se lo si lasciasse qua sarebbe il controller ad essere protetto.
+    // 
     // public function __construct()
     // {
-    //     $this->middleware('auth');
+    //     $this->middleware('auth'); oppure ->middleware('auth'); da inserire in web.app
     // }
     // va eliminato e spostato su web.php
 
