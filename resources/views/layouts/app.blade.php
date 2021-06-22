@@ -34,7 +34,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Blog</a>
+                            <a class="nav-link" href="{{ route('blog') }}">Blog</a>
                         </li>
                     </ul>
 
@@ -45,7 +45,7 @@
                         {{-- Se l'utente non è loggato vedrà il seguente codice --}}
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('blog') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">

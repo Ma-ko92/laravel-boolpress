@@ -137,7 +137,7 @@ class PostController extends Controller
         // Cerco se il post esiste
         $post = Post::findOrFail($id);
         // Slug di default
-        $$update_post_data['slug'] = $post->slug;
+        $update_post_data['slug'] = $post->slug;
         
         // Condizione che verifica se il titolo del nuovo post è diverso da quello precedente, altrimenti lo slung non varia
         if($update_post_data['title'] != $post->title) {
@@ -161,7 +161,7 @@ class PostController extends Controller
             }
 
             // Se lo slug non è già presente, salviamo il nuovo slug
-            $$update_post_data['slug'] = $new_slug;
+            $update_post_data['slug'] = $new_slug;
             }
         
             $post->update($update_post_data);

@@ -12,7 +12,7 @@
                     <div class="card mt-4 mb-4">
                         <div class="card-body text-center">
                             <h5 class="card-title text-uppercase">{{ $post->title }}</h5>
-                            <a href="{{ route('admin.posts.show', [ 'post' => $post->id ]) }}" class="btn btn-primary">View Post</a>
+                            <a href="{{ route('admin.posts.show', [ 'post' => $post->id ]) }}" class="btn btn-primary">Guarda il Post</a>
 
                             <a href="{{ route('admin.posts.edit', [ 'post' => $post->id ]) }}" class="btn btn-success">Modifica Post</a>
 
