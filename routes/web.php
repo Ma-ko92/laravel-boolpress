@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Not remove (Metodo della classe Auth che importa le rotte che necessitano di autenticazione)
+// Potrebbe non servire includerlo
 Auth::routes();
 
 // Home controller di esempio, aggiunto dalla funzione di sopra,
@@ -32,7 +33,7 @@ Route::prefix('admin')
         ->group(function () {   
             // qua inserirò tutte le route che faranno parte degli utenti loggati
             Route::get('/', 'HomeController@index')->name('home'); 
-
+            // Questo resource crea tutte le route necessarie per le operazioni crud.  
             Route::resource('posts', 'PostController');//->name('post');
       });
 

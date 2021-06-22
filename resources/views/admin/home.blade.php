@@ -3,16 +3,16 @@
 @section('content')
     <div class="container">
         
-        <h1>Ultimi post</h1>
+        <h1 class="text-center text-uppercase">Ultimi post</h1>
 
         <div class="row">
             @foreach ($posts as $post)
                 <div class="col-6">
-                    <div class="card" style="margin-bottom: 20px;">
-                        <div class="card-body">
+                    <div class="card mt-4 mb-4">
+                        <div class="card-body text-center">
                             <h5 class="card-title">{{ $post->title }}</h5>
                             
-                            <a href="{{ route('blog-page', ['slug' => $post->slug]) }}" class="btn btn-primary">View Post</a>
+                            <a href="{{ route('blog-page', ['slug' => $post->slug]) }}" class="btn btn-primary">Dettagli</a>
                         </div>
                     </div>
                 </div>
