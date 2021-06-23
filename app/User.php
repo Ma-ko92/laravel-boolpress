@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     // Stabilisco la corrispondenza
     // 
-    // Con info Laravel crea un attributo con lo stesso nome della funzione che 
+    // Con userData(nome a scelta) Laravel crea un attributo con lo stesso nome della funzione che 
     // possiamo utilizzare per richiedere gli elementi nell'altra tabella
     public function userData() {
         // Inserisco il name space completo
