@@ -33,6 +33,18 @@
                 <textarea class="form-control" name="content" id="content" cols="30" rows="10" value="{{ old( 'content', $post->content ) }}"></textarea>
             </div>
 
+            {{-- opzione per le categorie --}}
+            <div class="form-group">
+                <label for="category_id">Categoria</label>
+                <select class="form-control" name="category_id" id="category_id">
+                    <option value="">Nessuna</option>
+                    {{-- Con un foreach prendo tutte le categorie dalla tabella --}}
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <input type="submit" value="Salva" class="btn btn-success">
         </form>
 
@@ -41,3 +53,6 @@
 
 
 @endsection
+
+{{-- Old è una funzione che torna ciò che l'utente ha gia inserito nel form, possiamo però usare 
+un default se l'utente non ha ancora inviato il form ($post->category_id) riga 43--}}
