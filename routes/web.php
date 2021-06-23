@@ -23,6 +23,8 @@ Route::get('/', 'HomeController@index')->name('home');
 // Gestione gruppi di route pubbliche
 Route::get('/blog', 'PostController@index')->name('blog');
 Route::get('/blog/{slug}', 'PostController@show')->name('blog-page');
+Route::get('/categories', 'CategoryController@index')->name('categories');
+Route::get('/categories/{slug}', 'CategoryController@show')->name('category-page');
 
 // Gestione  gruppi di route protette, tramite prefisso
 Route::prefix('admin') 
