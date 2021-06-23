@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Stabilisco la corrispondenza
+    // 
+    // Con info Laravel crea un attributo con lo stesso nome della funzione che 
+    // possiamo utilizzare per richiedere gli elementi nell'altra tabella
+    public function userData() {
+        // Inserisco il name space completo
+        // Con this stabilisco l'istanza che richiama una funzione
+        return $this->hasOne('App\UserInfo');
+    }
 }

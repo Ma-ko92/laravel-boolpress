@@ -14,4 +14,10 @@ class UserInfo extends Model
         'telephone',
         'birthday'
     ];
+
+    // Stabilisco che la foreign key di questa tabella fa riferimento ad User
+    // Va sempre messo nella tabella della foreign key
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 }
