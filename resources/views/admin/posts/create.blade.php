@@ -34,6 +34,18 @@
                 <textarea class="form-control" name="content" id="content" cols="30" rows="10">{{ old('content') }}</textarea>
             </div>
 
+            {{-- opzione per le categorie --}}
+            <div class="form-group">
+                <label for="category_id">Categoria</label>
+                <select class="form-control" name="category_id" id="category_id">
+                    <option value="">Nessuna</option>
+                    {{-- Con un foreach prendo tutte le categorie dalla tabella --}}
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <input type="submit" value="Salva" class="btn btn-success">
         </form>
     </div>    

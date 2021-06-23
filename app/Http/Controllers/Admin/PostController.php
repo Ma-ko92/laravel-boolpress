@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-// importo la funzione per il model
+// importo il model
 use App\Post;
+// Importo il model
+use App\Category;
 // importo la funzione per creare lo slug
 use Illuminate\Support\Str;
+
 
 class PostController extends Controller
 {
@@ -35,7 +38,13 @@ class PostController extends Controller
     // Creal il form
     public function create()
     {
-        return view('admin.posts.create');
+        // Richiamo tutte le categorie
+        $categories = Category::all();
+
+        $data = [
+            'categories' => $categories
+        ];
+        return view('admin.posts.create', $data);
     }
 
     /**
@@ -50,9 +59,17 @@ class PostController extends Controller
         $request->validate([
             'title'=>'required|max:255',
             'content'=>'required|max:65000',
+            // Per evitare problemi di sicurezza(se nullo inserire prima nullable)
+            'category_id' => 'nullable|exists:categories, id'
         ]);
 
         $new_post_data = $request->all();
+
+        // Condizione che verifica la categoria
+        // se vuota restuituisce null
+        // if(empty($new_post_data['category_id'])) {
+        //     $new_post_data['category_id'] = null;
+        // }
         
         // Inserisco lo slug
         $new_slug = Str::slug($new_post_data['title'], '-');
@@ -95,7 +112,9 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
 
         $data = [
-            'post' => $post
+            'post' => $post,
+            // Per evitare di fare più chiamate
+            'post_category' => $post->category
         ];
 
         return view('admin.posts.show', $data);

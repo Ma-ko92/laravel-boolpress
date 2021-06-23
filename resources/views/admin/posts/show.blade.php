@@ -6,6 +6,11 @@
         {{-- Titolo Post --}}
         <h1 class="text-center text-uppercase">{{ $post->title }}</h1>
 
+        {{-- Categoria --}}
+        @if($post_category)
+            <div class="mt-2 mb-2">Categoria: {{  $post_category->name}}</div>
+        @endif($post->category)
+
         {{-- SLUG --}}
         <div class="mt-3 mb-3">
             <strong>Slug:</strong> {{ $post->slug }}

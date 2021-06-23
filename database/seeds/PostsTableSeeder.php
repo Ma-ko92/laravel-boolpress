@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Post;
 use Faker\Generator as Faker;
+// Inserisco il model per lo slug
 use Illuminate\Support\Str;
 
 class PostsTableSeeder extends Seeder
