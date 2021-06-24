@@ -151,7 +151,8 @@ class PostController extends Controller
         $request->validate([
             'title'=>'required|max:255',
             'content'=>'required|max:65000',
-            // Per evitare problemi di sicurezza(se nullo inserire prima nullable)
+            // Per evitare problemi di sicurezza(se nullo inserire prima nullable) esso viene 
+            // salvato automaticamente perchè è presente nei fillable.
             'category_id' => 'nullable|exists:categories, id'
         ]);
 

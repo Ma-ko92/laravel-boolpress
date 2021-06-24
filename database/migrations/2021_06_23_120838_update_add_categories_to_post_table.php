@@ -33,7 +33,7 @@ class UpdateAddCategoriesToPostTable extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            //per cancellare la colonna, prima cancello la relazione(nome tabella_nome colonna_foreign)
+            //per cancellare la colonna, prima cancello la relazione(nome tabella_nome colonna_foreign) per evitare problemi nel rollback
             $table->dropForeign('posts_category_id_foreign');
             // Poi la colonna
             $table->dropColumn('category_id');
