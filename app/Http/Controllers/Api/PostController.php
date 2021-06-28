@@ -15,11 +15,24 @@ class PostController extends Controller
         // costruisco l'array per prendere i dati a me necessari
         $posts_data = [];
         foreach($posts as $post) {
+            // Se voglio i nomi dei tag
+            // $tags = $post->tags->toArray();
+            // $return_tags = [];
+            // foreach($tags as $tag) {
+            //     $return_tags[] = [
+            //         'name' => $tag->name
+            //     ];
+            // }
+
+
             $posts_data[] = [
                 'title' => $post->title,
                 'content' => $post->content,
                 // uso un ternario per verificare che la categoria non sia null
-                'category' => $post->category ? $post->category->name : ''
+                'category' => $post->category ? $post->category->name : '',
+                // per i tag dato che ritornano una collection uso to array
+                'tags' => $post->tags-toArray()
+                // 'tags' => $return_tags
             ];
         }
 

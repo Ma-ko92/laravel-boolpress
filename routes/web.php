@@ -23,9 +23,15 @@ Route::get('/', 'HomeController@index')->name('home');
 // Gestione gruppi di route pubbliche
 Route::get('/blog', 'PostController@index')->name('blog');
 Route::get('/blog/{slug}', 'PostController@show')->name('blog-page');
+
 Route::get('/categories', 'CategoryController@index')->name('categories');
 Route::get('/categories/{slug}', 'CategoryController@show')->name('category-page');
+
 Route::get('/tags/{slug}', 'TagController@show')->name('tag-page');
+
+// Route che mostra i post visualizzati con Vuejs
+Route::get('/vue-posts', 'PostController@vuePosts')->name('vue-post');
+
 
 
 // Gestione  gruppi di route protette, tramite prefisso
