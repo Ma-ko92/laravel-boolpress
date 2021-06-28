@@ -25,6 +25,8 @@ Route::get('/blog', 'PostController@index')->name('blog');
 Route::get('/blog/{slug}', 'PostController@show')->name('blog-page');
 Route::get('/categories', 'CategoryController@index')->name('categories');
 Route::get('/categories/{slug}', 'CategoryController@show')->name('category-page');
+Route::get('/tags/{slug}', 'TagController@show')->name('tag-page');
+
 
 // Gestione  gruppi di route protette, tramite prefisso
 Route::prefix('admin') 
