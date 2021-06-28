@@ -18,6 +18,6 @@ class TagController extends Controller
             'tag' => $tag
         ];
 
-        return view('guest.tag.show', $data);
+        return view('guest.tags.show', $data);
     }
 }

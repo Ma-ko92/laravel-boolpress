@@ -79,9 +79,9 @@ class PostController extends Controller
             'title'=>'required|max:255',
             'content'=>'required|max:65000',
             // Per evitare problemi di sicurezza(se nullo inserire prima nullable)
-            'category_id' => 'nullable|exists:categories, id',
+            'category_id' => 'nullable|exists:categories,id',
             // stessa cosa per tags
-            'tags' => 'nullable|exists:tags, id'
+            'tags' => 'nullable|exists:tags,id'
         ]);
 
         $new_post_data = $request->all();
