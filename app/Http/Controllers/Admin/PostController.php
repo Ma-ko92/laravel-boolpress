@@ -161,10 +161,12 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $categories = Category::all();
+        $tags = Tag::all();
 
         $data = [
             'post' => $post,
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ];
 
         return view('admin.posts.edit', $data);
@@ -184,7 +186,8 @@ class PostController extends Controller
             'content'=>'required|max:65000',
             // Per evitare problemi di sicurezza(se nullo inserire prima nullable) esso viene 
             // salvato automaticamente perchè è presente nei fillable.
-            'category_id' => 'nullable|exists:categories, id'
+            'category_id' => 'nullable|exists:categories, id',
+            'tags' => 'nullable|exists:tags, id'
         ]);
 
         $update_post_data = $request->all();

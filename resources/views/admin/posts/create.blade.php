@@ -55,8 +55,9 @@
                         <input class="form-check-input" 
                                name="tags[]" {{-- Quando si utilizzano le checkbox, hanno tutte lo stesso name. Mettendo le [] permettiamo la multi scelta --}}
                                type="checkbox" 
-                               value="{{ $tag->id }}" id="tag-{{ $tag->id }}" {{-- In questo modo rendo univoche l'id legata alla label-for --}}
-                               {{ in_array($tag->id, old('tags')) ? 'checked' : '' }} {{-- Per setterla di default --}}
+                               value="{{ $tag->id }}" 
+                               id="tag-{{ $tag->id }}" {{-- In questo modo rendo univoche l'id legata alla label-for --}}
+                               {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }} {{-- Per setterla di default nel caso di errori--}}
                         >
 
                         <label class="form-check-label" for="tag-{{ $tag->id }}">
