@@ -21,6 +21,6 @@ class Post extends Model
 
     // Per leggere i vari tag creo una relazione con App\Tag
     public function tags() {
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Tag', 'post_tag');
     }
 }

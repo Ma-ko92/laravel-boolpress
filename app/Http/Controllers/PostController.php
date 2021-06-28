@@ -29,7 +29,8 @@ class PostController extends Controller
         }
 
         $data = [
-            'post' => $post
+            'post' => $post,
+            'post_category' => $post->category
         ];
 
         return view('guest.posts.show', $data);

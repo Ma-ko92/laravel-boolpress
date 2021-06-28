@@ -186,8 +186,8 @@ class PostController extends Controller
             'content'=>'required|max:65000',
             // Per evitare problemi di sicurezza(se nullo inserire prima nullable) esso viene 
             // salvato automaticamente perchè è presente nei fillable.
-            'category_id' => 'nullable|exists:categories, id',
-            'tags' => 'nullable|exists:tags, id'
+            'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id'
         ]);
 
         $update_post_data = $request->all();
