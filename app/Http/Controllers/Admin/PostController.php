@@ -245,6 +245,8 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
+        // Svuoto i tags prima di eliminare un elemento per evitare tabelle orfane in quanto legate da una relazione
+        $post->tags()->sync([]);
 
         $post->delete();
 
