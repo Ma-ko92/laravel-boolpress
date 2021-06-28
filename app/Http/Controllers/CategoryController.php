@@ -26,7 +26,7 @@ class CategoryController extends Controller
 
         $data = [
             'category' => $category,
-            'related_posts' => $category->posts
+            'posts' => $category->posts
 
         ];
 
