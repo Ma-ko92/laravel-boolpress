@@ -19,7 +19,7 @@ class Post extends Model
         return $this->belongsTo('App\Category');
     }
 
-    // Per leggere i vari tag creo una relazione con App\Tag
+    // Per leggere i vari tag creo una relazione con App\Tag, per meglio specificare gli passo come argomento il nome della tabella ponte
     public function tags() {
         return $this->belongsToMany('App\Tag', 'post_tag');
     }

@@ -12,12 +12,15 @@
         @endif($post->category)
 
         {{-- Tags --}}
-        <div class="mt-2 mb-2">
-            <strong>Tags: </strong>
-            @foreach($post_tags as $tag)
-                {{ $tag->name }}{{ $loop->last ? '' : ', ' }}
-            @endforeach
-        </div>
+        {{-- Condizione che verifica che l'elemento abbia un tag, se false non lo stampa --}}
+        @if($post_tags->isNotEmpty())
+            <div class="mt-2 mb-2">
+                <strong>Tags: </strong>
+                @foreach($post_tags as $tag)
+                    {{ $tag->name }}{{ $loop->last ? '' : ', ' }}
+                @endforeach
+            </div>
+        @endif
         {{-- SLUG --}}
         <div class="mt-3 mb-3">
             <strong>Slug:</strong> {{ $post->slug }}
