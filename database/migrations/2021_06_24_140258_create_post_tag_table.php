@@ -34,8 +34,13 @@ class CreatePostTagTable extends Migration
      */
     public function down()
     {
-        $table->dropForeign('post_tag_post_id_foreign');
-        $table->dropForeign('post_tag_tag_id_foreign');
+
+        Schema::table('post_tag', function (Blueprint $table) {
+            //per cancellare la colonna, prima cancello la relazione(nome tabella_nome colonna_foreign) per evitare problemi nel rollback
+            $table->dropForeign('post_tag_post_id_foreign');
+            $table->dropForeign('post_tag_tag_id_foreign');
+        });
+
         Schema::dropIfExists('post_tag');
     }
 }

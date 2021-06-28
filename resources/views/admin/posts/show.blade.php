@@ -11,6 +11,13 @@
             <div class="mt-2 mb-2">Categoria: {{  $post_category->name}}</div>
         @endif($post->category)
 
+        {{-- Tags --}}
+        <div class="mt-2 mb-2">
+            <strong>Tags: </strong>
+            @foreach($post_tags as $tag)
+                {{ $tag->name }}{{ $loop->last ? '' : ', ' }}
+            @endforeach
+        </div>
         {{-- SLUG --}}
         <div class="mt-3 mb-3">
             <strong>Slug:</strong> {{ $post->slug }}

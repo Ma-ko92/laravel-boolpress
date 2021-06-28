@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Post;
 // Importo il model
 use App\Category;
+// Importo il model
+use App\Tag;
 // importo la funzione per creare lo slug
 use Illuminate\Support\Str;
 
@@ -21,7 +23,21 @@ class PostController extends Controller
      */
     public function index()
     {
+        // Se necessito prendere un determinato elemento, nelle () ci va l'id
+        // $post = Post::findOrFail();
         $posts = Post::all();
+
+        // Detach rimuove un tag ad un elemento
+        // Nelle () va inserito l'id, se più di uno usare un array[id, id]
+        // $post->tags()->detach();
+        // Attach aggiunge un tag ad un elemento
+        // $post->tags()->attach();
+        // Sync sovrascive tottalmente i tag
+        // Esso ha bisogno delle quadre anche per singoli tag
+        // Con sync array vuoto non assegno nessun tag
+        // $post-tags()->sync();
+        // Di solito queste funzioni vengono usate nei seed,
+        // NB. con queste funzioni i cambiamenti sono immediati
 
         $data = [
             'posts' => $posts
@@ -40,9 +56,12 @@ class PostController extends Controller
     {
         // Richiamo tutte le categorie
         $categories = Category::all();
+        // Richiamo i Tags
+        $tags = Tag::all();
 
         $data = [
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ];
         return view('admin.posts.create', $data);
     }
@@ -60,7 +79,9 @@ class PostController extends Controller
             'title'=>'required|max:255',
             'content'=>'required|max:65000',
             // Per evitare problemi di sicurezza(se nullo inserire prima nullable)
-            'category_id' => 'nullable|exists:categories, id'
+            'category_id' => 'nullable|exists:categories, id',
+            // stessa cosa per tags
+            'tags' => 'nullable|exists:tags, id'
         ]);
 
         $new_post_data = $request->all();
@@ -97,6 +118,14 @@ class PostController extends Controller
         $new_post->fill($new_post_data);
         $new_post->save();
 
+        // Sync va dopo in quanto crea subito la relazione nella tabella ponte
+        // Creo una conzione che verifi se il tag sia presente
+        // Verifico per sicurezza che sia anche un array
+        // In questo caso si può usare tranquillamente attach in quanto non si ha dei tags precedenti da rimuovere
+        if(isset($new_post_data['tags']) && is_array($new_post_data['tags'])) {
+            $new_post->tags()->sync($new_post_data['tags']);
+        }
+
         return redirect()->route('admin.posts.show', ['post' => $new_post->id]);
     }
 
@@ -114,7 +143,9 @@ class PostController extends Controller
         $data = [
             'post' => $post,
             // Per evitare di fare più chiamate
-            'post_category' => $post->category
+            'post_category' => $post->category,
+            // Passo i tags
+            'post_tags' => $post->tags
         ];
 
         return view('admin.posts.show', $data);

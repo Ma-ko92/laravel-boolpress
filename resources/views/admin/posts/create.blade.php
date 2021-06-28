@@ -46,6 +46,26 @@
                 </select>
             </div>
 
+            {{-- Opzione per i tag --}}
+            <div class="form-group">
+                <h5>Tags</h5>
+
+                @foreach($tags as $tag)
+                    <div class="form-check">
+                        <input class="form-check-input" 
+                               name="tags[]" {{-- Quando si utilizzano le checkbox, hanno tutte lo stesso name. Mettendo le [] permettiamo la multi scelta --}}
+                               type="checkbox" 
+                               value="{{ $tag->id }}" id="tag-{{ $tag->id }}" {{-- In questo modo rendo univoche l'id legata alla label-for --}}
+                               {{ in_array($tag->id, old('tags')) ? 'checked' : '' }} {{-- Per setterla di default --}}
+                        >
+
+                        <label class="form-check-label" for="tag-{{ $tag->id }}">
+                            {{ $tag->name }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+
             <input type="submit" value="Salva" class="btn btn-success">
         </form>
     </div>    

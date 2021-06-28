@@ -16,11 +16,11 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $categories = [
-            'HTML',
-            'CSS',
-            'JAVASCRIPT',
-            'PHP',
-            'MySQL'
+            'Viaggi',
+            'Cucina',
+            'Tempo libero',
+            'Foto',
+            'Ostelli'
 
         ];
 
