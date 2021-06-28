@@ -224,6 +224,15 @@ class PostController extends Controller
         
             $post->update($update_post_data);
 
+            // Tags
+            if(isset($update_post_data['tags']) && is_array($update_post_data['tags'])) {
+                $post->tags()->sync($update_post_data['tags']);
+            } else {
+                // In questo modo se non cè nessuna checkbox segnata salva un array vuoto
+                $post->tags()->sync([]);
+            }
+            
+
             return redirect()->route('admin.posts.show', ['post' => $post->id]);
         }
 
