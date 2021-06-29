@@ -22,3 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 // Richiamo il controller e ritorno un json
 Route::get('/posts', 'Api\PostController@index')->name('api.posts');
+
+// Se il metodo è post basta cambiare il get in post
+// Route::post('/posts', 'Api\PostController@index')->name('api.posts');
