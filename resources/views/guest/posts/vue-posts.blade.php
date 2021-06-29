@@ -8,13 +8,26 @@
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 @endsection
 
+{{-- Script presente nel footer --}}
+@section('footer-scripts')
+    <script src="{{ asset('js/posts.js') }}"></script>
+@endsection
+
 
 @section('content')
     <div class="container">
-        <h1>Post visualizzati con Vuejs</h1>
+        <div id="root">
+            {{-- Per evitare conflitti tra blade e vue usare la @ davanti le parentesi per definire un istanza di vue--}}
+            <h1>@{{ title }}</h1>
 
-        <div class="row">
-           
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

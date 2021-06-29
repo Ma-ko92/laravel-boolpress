@@ -31,7 +31,7 @@ class PostController extends Controller
                 // uso un ternario per verificare che la categoria non sia null
                 'category' => $post->category ? $post->category->name : '',
                 // per i tag dato che ritornano una collection uso to array
-                'tags' => $post->tags-toArray()
+                'tags' => $post->tags->toArray()
                 // 'tags' => $return_tags
             ];
         }

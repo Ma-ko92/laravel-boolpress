@@ -10,13 +10,10 @@
     <title>Boolpress</title>
 
     {{-- Con questo metodo posso usare lo script js su una pagina --}}
-    @yield('header-script')
+    @yield('header-scripts')
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
-    {{-- Con questo metodo posso usare lo script js su una sola pagina --}}
-    @yield('header-script')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -99,5 +96,7 @@
             @yield('content')
         </main>
     </div>
+
+    @yield('footer-scripts')
 </body>
 </html>

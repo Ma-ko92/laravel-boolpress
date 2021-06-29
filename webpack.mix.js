@@ -18,7 +18,7 @@ mix.js('resources/js/app.js', 'public/js')
     });
 
 // compilo Js specifico per una pagina (vue-post)
-mix.js('resources/js/post.js', 'public/js')
+mix.js('resources/js/posts.js', 'public/js')
 
 // Con questa riga disabilito le notifiche di successo di sass
 mix.disableSuccessNotifications();
