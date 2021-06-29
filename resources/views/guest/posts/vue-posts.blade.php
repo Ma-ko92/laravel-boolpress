@@ -21,10 +21,19 @@
             <h1>@{{ title }}</h1>
 
             <div class="row">
-                <div class="col-6">
-                    <div class="card">
-                        <h5 class="card-title"></h5>
-                        <p class="card-text"></p>
+                <div v-for="post in posts" class="col-6 mb-2 mt-2">
+                    <div class="card px-3 py-3">
+                        <h3 class="card-title">@{{ post.title }}</h3>
+                        <p class="card-text">@{{ post.content }}</p>
+
+                        <div v-if="post.tags.lenght > 0">
+                            Tags:
+                            <ul>
+                                <li v-for="tag in post.tags">
+                                    @{{ tag.name }}
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
