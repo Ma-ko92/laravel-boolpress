@@ -30,6 +30,14 @@
         <h2>Descrizione</h2>
         <p>{{ $post->content }}</p>
 
+        {{-- Data --}}
+        <div class="mb-2 mt-2 px-2 py-2">
+            {{-- Per le date laravel include la libreria di Carbon per la gestione delle date.
+                Richiamando l'istanza e usando la funzione di formattazione delle date, sono in
+                grado di inserire la data nel formato desiderato --}}
+            Inserito il: {{ $post->created_at->format('d M Y') }}
+        </div>
+
         <div>
             <a href="{{ route('admin.posts.edit', [ 'post' => $post->id ]) }}" class="btn btn-success">Modifica Post</a>
         </div>
