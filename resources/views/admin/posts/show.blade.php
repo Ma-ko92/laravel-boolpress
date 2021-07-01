@@ -6,6 +6,13 @@
         {{-- Titolo Post --}}
         <h1 class="text-center text-uppercase">{{ $post->title }}</h1>
 
+        {{-- Copertina  --}}
+        @if($post->cover)
+            <div class="mt-2 mb-2">
+                <img src="{{ asset('storage/' . $post->cover ) }}" alt="{{ $post->title }}">
+            </div>
+        @endif
+
         {{-- Categoria --}}
         @if($post_category)
             <div class="mt-2 mb-2">Categoria: {{  $post_category->name}}</div>
