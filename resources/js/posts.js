@@ -1,4 +1,4 @@
-const { default: Axios } = require("axios");
+// const { default: Axios } = require("axios");
 
 var app = new Vue({
     // Elemento
@@ -13,7 +13,8 @@ var app = new Vue({
     },
 
     mounted() {
-        axios.get('http://127.0.0.1:8000/api/posts')
+        // Se il dominio in cui scriviamo vue è uguale allo stesso dove richiamiamo l'api possiamo omettere di inserire il dominio
+        axios.get('/api/posts')
         .then(result => {
             this.posts = result.data.posts
         });

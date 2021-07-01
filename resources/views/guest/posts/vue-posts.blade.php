@@ -26,7 +26,7 @@
                         <h3 class="card-title">@{{ post.title }}</h3>
                         <p class="card-text">@{{ post.content }}</p>
 
-                        <div v-if="post.tags.lenght > 0">
+                        <div v-if="post.tags.length > 0">
                             Tags:
                             <ul>
                                 <li v-for="tag in post.tags">
