@@ -83,7 +83,10 @@ class PostController extends Controller
             // Per evitare problemi di sicurezza(se nullo inserire prima nullable)
             'category_id' => 'nullable|exists:categories,id',
             // stessa cosa per tags
-            'tags' => 'nullable|exists:tags,id'
+            'tags' => 'nullable|exists:tags,id',
+            // Per convalidare le immagini
+            // Per un totale di grandezza |max:numero in kb
+            'cover-image' => 'nullable|image'
         ]);
 
         $new_post_data = $request->all();
