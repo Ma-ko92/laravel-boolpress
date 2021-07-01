@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    // Di default quando un file viene caricato deve seguire le regole di public
+    'default' => env('FILESYSTEM_DRIVER', 'public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -47,14 +48,17 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
-
+        
+        // Salviamo i file caricati in una cartella resa pubblica
         'public' => [
             'driver' => 'local',
+            // I file che verranno caricati si salveranno nella cartella storage/app/public
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
 
+        // Server amazon per memorizzare dati(cloud)
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
