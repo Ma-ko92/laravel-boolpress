@@ -18,7 +18,8 @@
         @endif
 
         {{-- Form --}}
-        <form action="{{ route('admin.posts.store') }}" method='post'>
+        {{-- Ricordarsi di aggiungere l'attributo enctype altrimenti non salvera i file inseriti(img) --}}
+        <form action="{{ route('admin.posts.store') }}" method='post' enctype="multipart/form-data">
             @csrf
             @method('POST')
 
@@ -65,6 +66,14 @@
                         </label>
                     </div>
                 @endforeach
+            </div>
+
+            {{-- Per upload di file --}}
+            <div class="form-group">
+                <label for="cover-image">Immagine di copertina</label>
+                {{-- In questo caso non settiamo il nome come la tabella perchè salveremo solo l'ultima parte della 
+                path del link dell'immagine --}}
+                <input type="file" class="form-control-file" name="cover-image" id="cover-image">
             </div>
 
             <input type="submit" value="Salva" class="btn btn-success">

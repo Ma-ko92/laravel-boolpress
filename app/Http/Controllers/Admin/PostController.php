@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+// Importo ls classe per le immagini
+use Illuminate\Support\Facades\Storage;
 // importo il model
 use App\Post;
 // Importo il model
@@ -113,6 +115,23 @@ class PostController extends Controller
 
         // Se lo slug non è già presente, salviamo il nuovo slug
         $new_post_data['slug'] = $new_slug;
+
+        // Se presente un immagine la salvo in storage e aggiungo il path relativo
+        // in $new_post_data
+        // Verifico che l'immagine sia settata
+        if(isset($new_post_data['cover-image'])) {
+            // Il metodo put in questo caso ha bisogno di 2 argomenti, la sottocartella del file e il file
+            $new_img_path = Storage::put('posts-cover', $new_post_data['cover-image']);
+
+            // Put torna una stringa relativa al path dell'immagine, e torna false se il caricamento fallisce 
+
+            // condizione che verifichi il successo del caricamneto del file
+            if($new_img_path) {
+                // Salvo nel database
+                $new_post_data['cover'] = $new_img_path;
+            }
+        }
+
 
         $new_post = new Post();
         $new_post->fill($new_post_data);
