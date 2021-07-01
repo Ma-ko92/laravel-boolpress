@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Richiamo il controller e ritorno un json
+// Laravel in automatico mette api davanti all'url
 Route::get('/posts', 'Api\PostController@index')->name('api.posts');
 
 // Se il metodo è post basta cambiare il get in post
