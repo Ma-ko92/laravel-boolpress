@@ -36,12 +36,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        {{-- Blog --}}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('blog') }}">Blog</a>
                         </li>
 
+                        {{-- Categorie --}}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('categories') }}">Categorie</a>
+                        </li>
+
+                        {{-- Contatti --}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('contacts') }}">Contattaci</a>
                         </li>
                     </ul>
 

@@ -19,6 +19,13 @@ Auth::routes();
 
 // Home controller di esempio, aggiunto dalla funzione di sopra,
 Route::get('/', 'HomeController@index')->name('home');
+// Creo una route per i contatti
+Route::get('/contacts', 'HomeController@contacts')->name('contacts');
+// Creo una route per le mail di contatto(dato che questi dati verranno gestiti ma non mostrati nel' url, posso usare post)
+Route::post('/handle-new-contact', 'HomeController@handleNewContact')->name('handle-new-contact');
+// Creo una route per una pagina di ringraziamento
+Route::get('/contacts-thank-you', 'HomeController@contactsThankYou')->name('contacts-thank-you');
+
 
 // Gestione gruppi di route pubbliche
 Route::get('/blog', 'PostController@index')->name('blog');
