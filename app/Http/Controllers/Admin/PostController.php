@@ -209,7 +209,10 @@ class PostController extends Controller
             // Per evitare problemi di sicurezza(se nullo inserire prima nullable) esso viene 
             // salvato automaticamente perchè è presente nei fillable.
             'category_id' => 'nullable|exists:categories,id',
-            'tags' => 'nullable|exists:tags,id'
+            'tags' => 'nullable|exists:tags,id',
+            // Per convalidare le immagini
+            // Per un totale di grandezza |max:numero in kb
+            'cover-image' => 'nullable|image'
         ]);
 
         $update_post_data = $request->all();
@@ -243,7 +246,16 @@ class PostController extends Controller
             // Se lo slug non è già presente, salviamo il nuovo slug
             $update_post_data['slug'] = $new_slug;
             }
-        
+
+            // Per update immagini(simile a create)
+            if(isset($modified_post_data['cover-image'])) {
+                $image_path = Storage::put('posts-cover', $modified_post_data['cover-image']);
+
+                if($image_path) {
+                    $modified_post_data['cover'] = $image_path;
+                }
+            }
+            
             $post->update($update_post_data);
 
             // Tags

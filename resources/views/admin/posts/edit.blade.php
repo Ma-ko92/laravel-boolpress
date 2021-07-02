@@ -18,7 +18,7 @@
 
 
         {{-- Form --}}
-        <form action="{{ route('admin.posts.update', ['post' => $post->id]) }}" method='post'>
+        <form action="{{ route('admin.posts.update', ['post' => $post->id]) }}" method='post' enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -65,6 +65,23 @@
                     </div>
                 @endforeach
             </div>
+
+            {{-- Per upload di file --}}
+            <div class="form-group">
+                <label for="cover-image">Immagine di copertina</label>
+                {{-- In questo caso non settiamo il nome come la tabella perchè salveremo solo l'ultima parte della 
+                path del link dell'immagine --}}
+                <input type="file" class="form-control-file" name="cover-image" id="cover-image">
+            </div>
+
+            {{-- Anteprima immagine presente --}}
+            @if ($post->cover)
+                <div>
+                    <h3>Anteprima immagine corrente</h3>
+
+                    <img src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}">
+                </div>
+            @endif
 
             <input type="submit" value="Salva" class="btn btn-success">
         </form>
