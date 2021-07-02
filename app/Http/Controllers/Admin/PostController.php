@@ -14,6 +14,11 @@ use App\Category;
 use App\Tag;
 // importo la funzione per creare lo slug
 use Illuminate\Support\Str;
+// Per l'invio email includo la classe
+use Illuminate\Support\Facades\Mail;
+// includo la classe dell'email che voglio inviare
+use App\Mail\NewPostAdminNotification;
+
 
 
 class PostController extends Controller
@@ -147,6 +152,10 @@ class PostController extends Controller
         if(isset($new_post_data['tags']) && is_array($new_post_data['tags'])) {
             $new_post->tags()->sync($new_post_data['tags']);
         }
+
+        // Invio email all'amministratore del sito(e passo l'istanza dell'oggetto completa appena creato)
+        Mail::to('boolpress@email.it')->send(/* istanza della mail da mandare */ new NewPostAdminNotification($new_post));
+
 
         return redirect()->route('admin.posts.show', ['post' => $new_post->id]);
     }
